@@ -44,5 +44,13 @@ namespace MVCClinica.Admin
             context.Medicos.Remove(medico);
             context.SaveChanges();
         }
+
+        public static List<Medico> ListarEspecialidad(string especialidad)
+        {
+            List<Medico> medicosEspecialidad = (from o in context.Medicos
+                                                where o.Especialidad == especialidad
+                                                select o).ToList();
+            return medicosEspecialidad;
+        }
     }
 }

@@ -8,6 +8,11 @@
 </head>
 <body>
     <p>@Html.ActionLink("Create New", "Create", "Medico")</p>
+    @using (Html.BeginForm("SearchByEspecialidad", "Medico", FormMethod.Get))
+    {
+        @Html.TextBox("especialidad", null)
+        <input type="submit" value="Get" />
+    }
     <table>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Nombre)</th>
@@ -26,7 +31,7 @@
                 <td>@Html.DisplayFor(modelItem => item.Especialidad)</td>
                 <td>@Html.DisplayFor(modelItem => item.NroMatricula)</td>
                 <td>
-                    @Html.ActionLink("Detail", "Detail", new { id = item.Id } )
+                    @Html.ActionLink("Detail", "Detail", new { id = item.Id })
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id })

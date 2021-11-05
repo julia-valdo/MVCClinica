@@ -1,5 +1,6 @@
 ﻿using MVCClinica.Admin;
 using MVCClinica.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MVCClinica.Controllers
@@ -77,6 +78,14 @@ namespace MVCClinica.Controllers
             AdmMedico.Eliminar(medico);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SearchByEspecialidad(string especialidad)
+        {
+            if (especialidad == null)
+                return RedirectToAction("Index");
+            
+            return View("Index", AdmMedico.ListarEspecialidad(especialidad));
         }
     }
 }
