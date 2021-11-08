@@ -36,6 +36,7 @@ namespace MVCClinica.Admin
         public static void Modificar(Medico medico)
         {
             context.Medicos.Attach(medico);
+            context.Entry(medico).State = EntityState.Modified;
             context.SaveChanges();
         }
 
@@ -51,6 +52,15 @@ namespace MVCClinica.Admin
                                                 where o.Especialidad == especialidad
                                                 select o).ToList();
             return medicosEspecialidad;
+        }
+
+        public static List<Medico> ListarNombre(string name, string lastName)
+        {
+            List<Medico> medicosName = (from o in context.Medicos
+                                        where o.Nombre == name
+                                        where o.Apellido == lastName
+                                        select o).ToList();
+            return medicosName;
         }
     }
 }

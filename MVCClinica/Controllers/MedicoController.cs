@@ -1,6 +1,6 @@
 ﻿using MVCClinica.Admin;
+using MVCClinica.Filters;
 using MVCClinica.Models;
-using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MVCClinica.Controllers
@@ -12,6 +12,7 @@ namespace MVCClinica.Controllers
             return View("Index", AdmMedico.Listar());
         }
 
+        [MyFilterAction]
         [HttpGet]
         public ActionResult Create()
         {
@@ -86,6 +87,14 @@ namespace MVCClinica.Controllers
                 return RedirectToAction("Index");
             
             return View("Index", AdmMedico.ListarEspecialidad(especialidad));
+        }
+
+        public ActionResult SearchByNombreCompleto(string name, string lastName)
+        {
+            if (name == null)
+                return RedirectToAction("Index");
+
+            return View("Index", AdmMedico.ListarNombre(name, lastName));
         }
     }
 }
